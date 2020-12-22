@@ -1,5 +1,7 @@
 # Responsive Web App - Collaborative project
 
+# App Name: PhotoMatch
+
 * The project consists of a responsive web app created with a collaborative project. This repo reflects the backend part of the project.
 * The aim of the project is to create a simple web app accessible from any device, which allows the user after logging in and having loaded images (from the memory, or from the camera of his device in the case of mobile), to read a result, which returns the content of the uploaded images (or images)
 
