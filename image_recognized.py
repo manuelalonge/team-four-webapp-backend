@@ -44,9 +44,9 @@ import os
 def main():
     dic = {}
     count = 0
-    for file in os.listdir('C:/Users/Roberta/Desktop/Python 2/Riconoscimento immagini/image'):
+    for file in os.listdir('images'):
         print(file)
-        full_path = 'C:/Users/Roberta/Desktop/Python 2/Riconoscimento immagini/image' + file
+        full_path = 'images/' + file
         print(full_path)
 
         label = image_recognized(full_path)
