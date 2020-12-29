@@ -1,6 +1,6 @@
 from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
-from classes.image import Photo
+from classes.photo import Photo
 
 class ImageRecognized(object):
     """
