@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TEAM 4 - Tomorrowdevs" />
+    <meta name="copyright" content="TEAM 4 - Tomorrowdevs" />
+    <meta name="description" content="Responsive Web App - Collaborative project tomorrowdevs">
+    <meta name="keywords" content="upload, photo upload, camera, photocamera, cloud" />
+
+    <link rel="canonical" href="https://team4-tomorrowdevs-webapp.netlify.app/" />
+    <meta property="og:title" content="Responsive Web App">
+    <meta property="og:url" content="https://team4-tomorrowdevs-webapp.netlify.app/">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:type" content="Web App">
+    <meta property="og:image" content=".assets/images/open-graph-preview.png">
+    <title>PhotoMatch - Login</title>
+<link href="style.css" rel="stylesheet"></head>
+
+<body>
+    <div class="site-logo">
+        <h1>PhotoMatch</h1>
+    </div>
+    <section class="login-page">
+        <div class="login-section">
+            <div class="login-section__title">
+                <h3>Welcome!</h3>
+                <p>Sign in to continue</p>
+            </div>
+            <div class="login-section__form">
+                <form class="login-form" action="/landing-page.html" method="">
+
+                    <div class="login-form__username">
+                        <label class="login-section__labels" for="username">Username</label>
+                        <input type="text" class="login-section__input" id="username" name="username" placeholder="Insert here your username" value="{{
+                            request.form.username }}">
+                    </div>
+                    <div class="login-form__password">
+                        <label class="login-section__labels" for="password">Password</label>
+                        <input type="password" class="login-section__input" id="password" name="password" placeholder="Insert here your password" value="{{
+                            request.form.password }}">
+                    </div>
+                    <input class="login-section__button" type="submit" value="Sign in">
+                    <!-- TO DO: Must link to landing page when logging in, use action -->
+                </form>
+                <!-- passing message error "invalid credentials" -->
+                <!-- {% if error %}
+                    <p class="error"><strong>Error:</strong> {{ error }}
+                {% endif %} -->
+            </div>
+        </div>
+        <div class="how-it-works">
+            <div class="how-it-works__title">
+                <p>Know what your photo is :)</p>
+            </div>
+            <div class="how-it-works__image-preview">
+                <p>That's a cat!</p>
+            </div>
+        </div>
+    </section>
+<script src="main.js"></script></body>
+
+</html>
