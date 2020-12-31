@@ -86,11 +86,11 @@ module.exports = {
     plugins: [
           new HtmlWebpackPlugin({
             filename: "index.html", 
-            template: path.resolve(__dirname, "src", "index.html")
+            template: path.resolve(__dirname, "templates", "index.html")
           }),
           new HtmlWebpackPlugin({
             filename: "landing-page.html",
-            template: path.resolve(__dirname, "src", "landing-page.html")
+            template: path.resolve(__dirname, "templates", "landing-page.html")
           }),
         new MiniCssExtractPlugin({
             filename: "style.css"
