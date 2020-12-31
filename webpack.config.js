@@ -4,11 +4,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: './src/index.js',
+  entry: './static/js/index.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'images/[name].[ext]'
+    path: path.resolve(__dirname, './static/dist'),
+    assetModuleFilename: './static/images/[name].[ext]'
   },
     devServer: {
         contentBase: './dist',
