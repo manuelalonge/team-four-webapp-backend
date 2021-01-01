@@ -1,6 +1,6 @@
-import './style.css';
+import './styles.scss';
 
-window.Dropzone = require('./static/js/dropzone');
+window.Dropzone = require('./dropzone');
 
 
 const messageError = document.querySelector(".message");
