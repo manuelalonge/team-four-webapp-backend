@@ -56,7 +56,7 @@ Dropzone.options.myawesomedropzone = {
        document.querySelector("#button").addEventListener("click", function (e){
          //spinnerLoader.style.visibility = "visible";  
          //modalLoader.style.display ="block";
-
+         myDropzone.processQueue();
          /* if there are more than 0 slides already in the slider (maybe because i uploaded images before)
         it will remove them*/
          if(document.querySelectorAll(".slides-image-container").length > 0) {
