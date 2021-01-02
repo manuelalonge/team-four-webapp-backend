@@ -1,4 +1,7 @@
 import './styles.scss';
+import cat from "./images/cat-image.jpg";
+const catImage = document.querySelector(".how-it-works__image-preview");
+catImage.style.backgroundImage = `url(${cat})`;
 
 window.Dropzone = require('./dropzone');
 
@@ -53,7 +56,7 @@ Dropzone.options.myawesomedropzone = {
        document.querySelector("#button").addEventListener("click", function (e){
          //spinnerLoader.style.visibility = "visible";  
          //modalLoader.style.display ="block";
-
+         myDropzone.processQueue();
          /* if there are more than 0 slides already in the slider (maybe because i uploaded images before)
         it will remove them*/
          if(document.querySelectorAll(".slides-image-container").length > 0) {
