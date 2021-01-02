@@ -1,4 +1,7 @@
 import './styles.scss';
+import cat from "./images/cat-image.jpg";
+const catImage = document.querySelector(".how-it-works__image-preview");
+catImage.style.backgroundImage = `url(${cat})`;
 
 window.Dropzone = require('./dropzone');
 
