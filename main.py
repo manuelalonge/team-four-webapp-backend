@@ -6,7 +6,6 @@ import sqlite3 as sql
 import os
 from werkzeug.utils import secure_filename
 import requests
-from cpuid import cpuid
 
 app = Flask(__name__)
 app.secret_key = '12345'
