@@ -11,7 +11,7 @@ from flaskr.__init__ import create_app
 import os
 
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('upload', __name__)
 
 app = create_app()
 UPLOAD_FOLDER = os.path.join(app.instance_path, 'uploads')
@@ -31,19 +31,20 @@ def upload_file():
         files = request.files.getlist('files[]')
         photo_id = 0
         results = {}
-        for file in files:
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                photo = app.config['UPLOAD_FOLDER'] + "/" + filename
-                photo_res = ImageRecognized.image_recognized(photo)
-                os.remove(app.config['UPLOAD_FOLDER'] + "/" + filename)
-                photo_id = photo_id +1
-                photo_id_st = str(photo_id)
-                results["Photo" + photo_id_st] = photo_res
-            else:
-                return flash("errore")
-        return render_template('blog/landing_page.html', value=results)
-    return render_template('blog/landing_page.html')
+        try:
+            for file in files:
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                    photo = app.config['UPLOAD_FOLDER'] + "/" + filename
+                    photo_res = ImageRecognized.image_recognized(photo)
+                    os.remove(app.config['UPLOAD_FOLDER'] + "/" + filename)
+                    photo_id = photo_id +1
+                    photo_id_st = str(photo_id)
+                    results["Photo" + photo_id_st] = photo_res
+            return flash(results)
+        except:
+            return flash("errore")
+    return render_template('upload/landing_page.html')
     
     
