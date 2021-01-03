@@ -4,14 +4,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: './src/index.js',
+  entry: './flaskr/static/js/index.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'images/[name].[ext]'
+    path: path.resolve(__dirname, './flaskr/static/dist'),
+    assetModuleFilename: './flaskr/static/images/[name].[ext]'
   },
     devServer: {
-        contentBase: './dist',
+        contentBase: './flaskr/static/dist',
       },
     module: {
         rules: [
@@ -23,7 +23,7 @@ module.exports = {
                 {
                     loader: MiniCssExtractPlugin.loader,
                     options : {
-                        publicPath:"./"
+                        publicPath:"./flaskr/static/js"
                     },
                 },
                 {
@@ -86,11 +86,11 @@ module.exports = {
     plugins: [
           new HtmlWebpackPlugin({
             filename: "index.html", 
-            template: path.resolve(__dirname, "src", "index.html")
+            template: path.resolve(__dirname, "flaskr","templates","auth", "index.html")
           }),
           new HtmlWebpackPlugin({
             filename: "landing-page.html",
-            template: path.resolve(__dirname, "src", "landing-page.html")
+            template: path.resolve(__dirname, "flaskr","templates","upload", "landing_page.html")
           }),
         new MiniCssExtractPlugin({
             filename: "style.css"
