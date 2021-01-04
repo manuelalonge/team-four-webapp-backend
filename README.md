@@ -15,16 +15,22 @@ https://www.tomorrowdevs.com/
 
 # How did we create the web app?
 
+We created the frontend with HTML, CSS and JavaScript with the support of webpack module bundler, then we worked with Flask to create the backend and link it to the frontend.
+
 # What technologies did we use?
+
+HTML, CSS, Javascript, Flask, Webpack, NPM.
 
 # What working methodology and tools did we use?
 
 * We worked through **AGILE METHODOLOGY**. Each task was created as an issue of Github and reported onto a Github Projects board linked to the repository.
 * We tracked time spent on the activities with Toggl tracker
 * We used a Jitsi room for our calls, however, in the spirit of **AGILE METHODOLOGY** we tried to keep all the communications as asynchrounous as possible
-* A Google Sheet was used to manage our daily stand-ups and keep communications asynchronous
+* A standbot in our Slack channel was used to manage our daily stand-ups and keep communications asynchronous
 
 # What were the project's biggest challenges and how did we overcome them?
+
+
 
 # Meet the team
 
