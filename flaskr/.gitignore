@@ -106,5 +106,4 @@ dist
 
 webpack.config.js
 package-lock.json
-package.json
 babel.config.json
