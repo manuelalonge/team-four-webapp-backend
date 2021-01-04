@@ -12,7 +12,7 @@
                                    relations between employes" />
 
     <link rel="canonical" href="https://team4-tomorrowdevs-webapp.netlify.app/" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='dist/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/style.css') }}">
     <meta property="og:title" content="Responsive Web App">
     <meta property="og:url" content="https://team4-tomorrowdevs-webapp.netlify.app/">
     <meta property="og:locale" content="it_IT">
@@ -36,7 +36,7 @@
             <div class="load-images-gallery__images-container">
                 <div class="container__DropZone">
                     <form action="{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST" class="dropzone" id="myawesomedropzone">
-					<! -- url_for('nome_funzione') è il modo in cui flask chiama le funzioni dal backend, POST è il metodo utilizzato, enctype è necessario--> 
+                        <! -- url_for('nome_funzione') è il modo in cui flask chiama le funzioni dal backend, POST è il metodo utilizzato, enctype è necessario-->
 
                     </form>
 
@@ -53,7 +53,7 @@
         <div class="main-wrapper modal">
             <!-- Slider images with number and caption text -->
             <div class="slideshow-container">
-                <div class="remove-button"><img src="./assets/images/remove-button-icon.svg"></div>
+                <div class="remove-button"><img src="../../static/js/images/remove-button-icon.svg"></div>
             </div>
             <!-- Next and previous buttons -->
             <div class="buttons">
@@ -84,7 +84,7 @@
                             PAUSA
                             </span>
                         </button>
-                            <button class="btn__Screenshot button is-success" action = "{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST">
+                            <button class="btn__Screenshot button is-success" action="{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST">
                             <span class="icon is-small">
                             <i class="fas fa-camera"></i>
                                 LOAD FOTO 
@@ -106,8 +106,8 @@
                                 <div class="container__screenshots"></div>
                             </div>
                         </div>
-								<div>le tue foto sono:{{ message }}</div>
-		<! -- value nella stringa di sopra è il tag tramite cui il frontend riceve i dati dal backend --> 
+                        <div>le tue foto sono:{{ message }}</div>
+                        <! -- value nella stringa di sopra è il tag tramite cui il frontend riceve i dati dal backend -->
                     </div>
             </section>
             <canvas class="container__canvas is-hidden"></canvas>
@@ -115,7 +115,7 @@
             </div>
             </div>
         </div>
-		<script src="{{ url_for('static', filename='dist/main.js') }}"></script>
+        <script src="{{ url_for('static', filename='dist/main.js') }}"></script>
 
 </body>
 
