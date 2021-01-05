@@ -69,11 +69,7 @@ Dropzone.options.myawesomedropzone = {
             createSlide(element.dataURL, i)
           });
           // here I removed all the files from the dropzone when upload is clicked
-<<<<<<< HEAD
-          // myDropzone.removeAllFiles();
-=======
           //myDropzone.removeAllFiles();
->>>>>>> a069d6b964536357d9caae2b11b09f6470452a02
           mainWrapper.style.display = "block";
 
          // document.querySelector(".slides-image-container").innerHTML = "";
