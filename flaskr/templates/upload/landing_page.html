@@ -22,100 +22,100 @@
 </head>
 
 <body>
-    <<<<<<< HEAD <div id="myModal" class="modal">
+    <div id="myModal" class="modal">
         <div id="spinner"></div>
-        </div>
+    </div>
 
-        <div class="site-logo">
-            <h1>PhotoMatch</h1>
-        </div>
-        <!-- Manuel has changed the paragraph below to let it make more sense -->
-        <p class="container-lorem">Welcome to PhotoMatch<br> Load your picture for it to be recognized from our servers</p>
-        <div class="load-images-gallery">
-            <!-- Dropzone square -->
-            <div class="load-images-gallery__images-container">
-                <div class="container__DropZone">
-                    <form action="{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST" class="dropzone" id="myawesomedropzone">
-                        <! -- url_for('nome_funzione') è il modo in cui flask chiama le funzioni dal backend, POST è il metodo utilizzato, enctype è necessario-->
+    <div class="site-logo">
+        <h1>PhotoMatch</h1>
+    </div>
+    <!-- Manuel has changed the paragraph below to let it make more sense -->
+    <p class="container-lorem">Welcome to PhotoMatch<br> Load your picture for it to be recognized from our servers</p>
+    <div class="load-images-gallery">
+        <!-- Dropzone square -->
+        <div class="load-images-gallery__images-container">
+            <div class="container__DropZone">
+                <form action="{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST" class="dropzone" id="myawesomedropzone">
+                    <! -- url_for('nome_funzione') è il modo in cui flask chiama le funzioni dal backend, POST è il metodo utilizzato, enctype è necessario-->
 
-                    </form>
+                </form>
 
-                </div>
-                <button type="submit" id="button" class="dropzone__btn">Slideshow</button>
-                <div class="message">
-                    <span class="message__text">No more than 10 images allowed</span>
-                    <span class="close">OK</span>
-                </div>
+            </div>
+            <button type="submit" id="button" class="dropzone__btn">Slideshow</button>
+            <div class="message">
+                <span class="message__text">No more than 10 images allowed</span>
+                <span class="close">OK</span>
             </div>
         </div>
+    </div>
 
-        <!-- Slideshow container -->
-        <div class="main-wrapper modal">
-            <!-- Slider images with number and caption text -->
-            <div class="slideshow-container">
-                <div class="remove-button"><img src="../../static/js/images/remove-button-icon.svg"></div>
-            </div>
-            <!-- Next and previous buttons -->
-            <div class="buttons">
-                <a class="prev">&#10094;</a>
-                <a class="next">&#10095;</a>
-            </div>
-
+    <!-- Slideshow container -->
+    <div class="main-wrapper modal">
+        <!-- Slider images with number and caption text -->
+        <div class="slideshow-container">
+            <div class="remove-button"><img src="../../static/js/images/remove-button-icon.svg"></div>
         </div>
+        <!-- Next and previous buttons -->
+        <div class="buttons">
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
         </div>
 
+    </div>
+    </div>
 
 
-        <!-- Button to take a photo - it appears only on mobile -->
-        <div class="btn__takePhoto">
-            <section class="section section-visible">
-                <div class="container__all">
-                    <div class="columns">
-                        <div class="column">
-                            <video autoplay class="video__mobile"></video>
-                            <button class="btn__Play button is-hidden">
+
+    <!-- Button to take a photo - it appears only on mobile -->
+    <div class="btn__takePhoto">
+        <section class="section section-visible">
+            <div class="container__all">
+                <div class="columns">
+                    <div class="column">
+                        <video autoplay class="video__mobile"></video>
+                        <button class="btn__Play button is-hidden">
                             <span class="icon is-small">
                             <i class="fas fa-play"></i>
                             PLAY
                             </span>
                         </button>
-                            <button class="btn__Pause button">
+                        <button class="btn__Pause button">
                             <span class="icon is-small">
                             PAUSA
                             </span>
                         </button>
-                            <button class="btn__Screenshot button is-success" action="{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST">
+                        <button class="btn__Screenshot button is-success" action="{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST">
                             <span class="icon is-small">
                             <i class="fas fa-camera"></i>
                                 LOAD FOTO 
                             </span>
                         </button>
-                            <button class="btn__ChangeCamera button">
+                        <button class="btn__ChangeCamera button">
                             <span class="icon">
                             <i class="fas fa-sync-alt"></i>
                             </span>
                             <span>Switch camera</span>
                         </button>
-                        </div>
+                    </div>
+                    <div class="column">
+                        <h2 class="title">Photographs taken</h2>
+                        <div class="container__screenshots"></div>
+
                         <div class="column">
                             <h2 class="title">Photographs taken</h2>
                             <div class="container__screenshots"></div>
-
-                            <div class="column">
-                                <h2 class="title">Photographs taken</h2>
-                                <div class="container__screenshots"></div>
-                            </div>
                         </div>
-                        <div>le tue foto sono:{{ message }}</div>
-                        <! -- value nella stringa di sopra è il tag tramite cui il frontend riceve i dati dal backend -->
                     </div>
-            </section>
-            <canvas class="container__canvas is-hidden"></canvas>
-            <div class="btn__circle">
-            </div>
-            </div>
+                    <div>le tue foto sono:{{ message }}</div>
+                    <! -- value nella stringa di sopra è il tag tramite cui il frontend riceve i dati dal backend -->
+                </div>
+        </section>
+        <canvas class="container__canvas is-hidden"></canvas>
+        <div class="btn__circle">
         </div>
-        <script src="{{ url_for('static', filename='dist/main.js') }}"></script>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='dist/main.js') }}"></script>
 
 </body>
 
