@@ -55,7 +55,8 @@ Dropzone.options.myawesomedropzone = {
          e.preventDefault();
          myDropzone.processQueue();    
          //modalLoader.style.display ="block";
-
+         e.preventDefault();
+         myDropzone.processQueue(); 
          /* if there are more than 0 slides already in the slider (maybe because i uploaded images before)
         it will remove them*/
          if(document.querySelectorAll(".slides-image-container").length > 0) {
@@ -68,7 +69,11 @@ Dropzone.options.myawesomedropzone = {
             createSlide(element.dataURL, i)
           });
           // here I removed all the files from the dropzone when upload is clicked
+<<<<<<< HEAD
           // myDropzone.removeAllFiles();
+=======
+          //myDropzone.removeAllFiles();
+>>>>>>> a069d6b964536357d9caae2b11b09f6470452a02
           mainWrapper.style.display = "block";
 
          // document.querySelector(".slides-image-container").innerHTML = "";

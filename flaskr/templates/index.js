@@ -51,7 +51,9 @@ Dropzone.options.myawesomedropzone = {
        */
        let myDropzone = this;
        document.querySelector("#button").addEventListener("click", function (e){
-         //spinnerLoader.style.visibility = "visible";  
+         //spinnerLoader.style.visibility = "visible";
+         e.preventDefault();
+          myDropzone.processQueue();      
          //modalLoader.style.display ="block";
 
          /* if there are more than 0 slides already in the slider (maybe because i uploaded images before)
@@ -66,15 +68,14 @@ Dropzone.options.myawesomedropzone = {
             createSlide(element.dataURL, i)
           });
           // here I removed all the files from the dropzone when upload is clicked
-          myDropzone.removeAllFiles();
+          // myDropzone.removeAllFiles();
           mainWrapper.style.display = "block";
 
          // document.querySelector(".slides-image-container").innerHTML = "";
          
         
-         /* e.preventDefault();
-          myDropzone.processQueue();    
-          */
+          
+          
         });
       },
 }
