@@ -56,10 +56,11 @@ def upload_file():
                 results["Photo" + photo_id_st] = photo_res
                 print(12)
             else:
-                flash("Error")
-        pippo = jsonify(results)   
-        print(pippo)
-        return pippo
+                results = "Error"
+                return render_template("upload/landing_page.html", results= results)
+        #pippo = jsonify(results)   
+        #print(pippo)
+        return render_template("upload/landing_page.html", results= results)
 
     return render_template('upload/landing_page.html')
     

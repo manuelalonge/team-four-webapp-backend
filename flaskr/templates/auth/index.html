@@ -49,9 +49,15 @@
                 {% endif %} -->
             </div>
         </div>
+<<<<<<< HEAD
+		  {% for message in error %}
+    <div>{{ message }}</div>
+  {% endfor %}
+=======
         {% for message in get_flashed_messages() %}
         <div>{{ message }}</div>
         {% endfor %}
+>>>>>>> dev
         <div class="how-it-works">
             <div class="how-it-works__title">
                 <p>Know what your photo is :)</p>
