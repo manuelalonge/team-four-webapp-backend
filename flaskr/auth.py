@@ -51,16 +51,16 @@ def login():
         ).fetchone()
 
         if user is None:
-            error = 'Incorrect username.'
+            error = 'Incorrect_username.'
         elif not check_password_hash(user['password'], password):
-            error = 'Incorrect password.'
+            error = 'Incorrect_password.'
 
         if error is None:
             session.clear()
             session['user_id'] = user['id']
             return redirect(url_for('upload.upload_file'))
 
-        flash(error)
+        return render_template("auth/index.html", error=error )
 
     return render_template('auth/index.html')
     
