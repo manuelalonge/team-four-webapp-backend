@@ -36,6 +36,39 @@ let errorFormat;
     inputImage.addEventListener("change", selectImage);
 })();
 
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  loadImageSquare.addEventListener(eventName, preventDefaults, false)
+})
+
+function preventDefaults (e) {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
+
+loadImageSquare.addEventListener('drop', handleDrop, false)
+
+function handleDrop(e) {
+let dt = e.dataTransfer
+let files = dt.files
+
+handleFiles(files)
+}
+
+function previewFile(file) {
+  let reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function() {
+   loadImage(this.result);
+  }
+}
+
+function handleFiles(files) {
+  files = [...files]
+  files.forEach(previewFile)
+}
+
+
 
 function selectImage() {
     if(errorFormat !== undefined) {
@@ -54,32 +87,70 @@ function selectImage() {
 
 }
         
-function loadImage() {
-        const imageBox = document.createElement("div");
-        const removeBtn = document.createElement("p");
+function loadImage(src) {
+    const imageBox = document.createElement("div");
+    const removeBtn = document.createElement("p");
 
-        imageBox.classList.add("imageSelected");
-        removeBtn.classList.add("removeImage");
-        removeBtn.innerHTML = "X"
-        newImage = new Image();
-        newImage.classList.add("readyImage");
-        newImage.style.maxWidth = "100%";
-        newImage.style.maxHeight = "400px";
+    imageBox.classList.add("imageSelected");
+    removeBtn.classList.add("removeImage");
+    removeBtn.innerHTML = "X"
+    newImage = new Image();
+    newImageDrop = new Image();
+    newImage.classList.add("readyImage");
+    newImageDrop.classList.add("readyImage");
+    newImage.style.maxWidth = "100%";
+    newImageDrop.style.maxWidth = "100%";
+    newImage.style.maxHeight = "400px";
+    newImageDrop.style.maxHeight = "400px";
+
+    if(this.result == undefined) {
+        newImageDrop.src = src;
+    } else {
         newImage.src = this.result;
-        imageBox.appendChild(newImage);
-        imageBox.appendChild(removeBtn);
-        loadImageSquare.appendChild(imageBox);
-        Array.from(loadImageSquare.children).forEach(function(element) {
-          element.querySelector(".removeImage").addEventListener("click", function(e) {
-              e.preventDefault();
-              if(loadImageSquare.children.length >= 1 ) {
-                  element.remove();
-              }
-              
-          });
-      })
+    };
+    imageBox.appendChild(newImage);
+    imageBox.appendChild(newImageDrop);
+    imageBox.appendChild(removeBtn);
+    loadImageSquare.appendChild(imageBox);
+
+    Array.from(loadImageSquare.children).forEach(function(element) {
+        element.querySelector(".removeImage").addEventListener("click", function(e) {
+            e.preventDefault();
+            if(loadImageSquare.children.length >= 1 ) {
+                element.remove();
+            }
+            
+        });
+    });
 }
 
+let imagePath = newImage.src;
+
+        
+        Array.from(loadImageSquare.children).forEach(function(element,i) {
+            createSlide(imagePath,i );
+        })
+        upload.addEventListener("click", createSlide);
+        
+        function createSlide(path, index){
+          
+            const slides = document.createElement("div");
+    slides.classList.add("slides-image-container");
+    if(index == 0) {
+      slides.style.display = "block";
+    } 
+    const image = new Image();
+    const result = document.createElement("div");
+    result.classList.add("result-wrapper");
+
+    image.classList.add("image");
+    image.src = path;
+
+    slides.appendChild(image);
+    slides.appendChild(result);
+    slides.children[0].style.display = "block";
+    slideContainer.appendChild(slides);
+  }
 
 
 /*DROPZONE CUSTOMIZE CONFIGURATION
