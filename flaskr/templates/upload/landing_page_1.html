@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="TEAM 4 - Tomorrowdevs" />
+    <meta name="copyright" content="TEAM 4 - Tomorrowdevs" />
+    <meta name="description" content="Responsive Web App - Collaborative project tomorrowdevs">
+    <meta name="keywords" content="upload, photo upload, camera, photocamera, cloud" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="canonical" href="https://team4-tomorrowdevs-webapp.netlify.app/" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/style.css') }}">
+    <meta property="og:title" content="Responsive Web App">
+    <meta property="og:url" content="https://team4-tomorrowdevs-webapp.netlify.app/">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:type" content="Web App">
+    <meta property="og:image" content="./static/assets/js/images/open-graph-preview.png">
+    <title>PhotoMatch - Login</title>
+</head>
+
+
+<body>
+    <div id="myModal" class="modal">
+        <div id="spinner"></div>
+    </div>
+
+    <div class="site-logo">
+        <h1>PhotoMatch</h1>
+    </div>
+    <!-- Manuel has changed the paragraph below to let it make more sense -->
+    <!--<p class="container-lorem">Welcome to PhotoMatch<br> Load your picture for it to be recognized from our servers</p>
+    <div class="load-images-gallery">-->
+    <!-- Dropzone square -->
+    <div class="load-images-gallery__images-container">
+        <form action="{{ url_for('upload.upload_file') }}" method="POST" enctype="multipart/form-data" class="load-images-gallery__container">
+            <!--url_for('nome_funzione') è il modo in cui flask chiama le funzioni dal backend, POST è il metodo utilizzato, enctype è necessario-->
+            <label for="images-upload" class="load-images-gallery__upload">
+                    Select image:
+                </label>
+            <input type="file" name="files[]" multiple="true" accept="image/*" id="images-upload" capture/>
+            <input type="submit" class="load-images-gallery__submit" value="result list">
+        </form>
+        <h2> {{value}} </h2>
+        <!-- value nella stringa di sopra è il tag tramite cui il frontend riceve i dati dal backend -->
+    </div>
+    </div>
+    </div>
+
+    <!-- Slideshow container -->
+    <div class="main-wrapper modal">
+        <!-- Slider images with number and caption text -->
+        <div class="slideshow-container">
+            <div class="remove-button"><img src="../../static/js/images/remove-button-icon.svg"></div>
+        </div>
+        <!-- Next and previous buttons -->
+        <div class="buttons">
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </div>
+
+    </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='dist/main.js') }}"></script>
+
+</body>
+
+</html>

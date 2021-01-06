@@ -23,6 +23,29 @@
 
 
 /* spinner and the animation starts when upload button is clicked*/
+.load-images-gallery__upload {
+    display:block;
+    cursor: pointer;
+    max-width:600px;
+    background-color:green;
+    min-height:500px;
+    border:1px solid #000;
+}
+
+.readyImage {
+    width:30%;
+}
+
+input[type="file"] {
+    display:none;
+}
+
+.load-images-gallery__submit {
+    background-color:#fff;
+    color:green;
+    padding:20px;
+}
+
 
 #spinner {
     visibility: hidden;
