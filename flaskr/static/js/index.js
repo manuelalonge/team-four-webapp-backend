@@ -1,8 +1,5 @@
 import './styles.scss';
 
-window.Dropzone = require('./dropzone');
-
-
 const messageError = document.querySelector(".message");
 const messageText = document.querySelector(".message__text");
 const closeMessage = document.querySelector(".close");
@@ -12,17 +9,17 @@ const modalLoader = document.querySelector(".modal");
 const mainWrapper = document.querySelector(".main-wrapper");
 const slideContainer = document.querySelector(".slideshow-container");
 const exitBtn = document.querySelector(".remove-button");
-
+let newImageDrop;
 
 
 
 exitBtn.addEventListener("click", exitSlider);
-closeMessage.addEventListener("click", closeAlert);
+// closeMessage.addEventListener("click", closeAlert);
 
 // message error if the button ok is pressed the box disappear
-function closeAlert () {
-  messageError.style.display = "none";
-}
+// function closeAlert () {
+//   messageError.style.display = "none";
+// }
 
 const inputImage = document.querySelector("#images-upload");
 const modalGallery = document.querySelector(".load-images-gallery__modal");
@@ -122,36 +119,36 @@ function loadImage(src) {
             
         });
     });
-}
 
-let imagePath = newImage.src;
+//     console.log(newImage);
+// let imagePath = newImage.src;
 
         
-        Array.from(loadImageSquare.children).forEach(function(element,i) {
-            createSlide(imagePath,i );
-        })
-        upload.addEventListener("click", createSlide);
+//         Array.from(loadImageSquare.children).forEach(function(element,i) {
+//             createSlide(imagePath,i );
+//         })
+//         upload.addEventListener("click", createSlide);
         
-        function createSlide(path, index){
+//         function createSlide(path, index){
           
-            const slides = document.createElement("div");
-    slides.classList.add("slides-image-container");
-    if(index == 0) {
-      slides.style.display = "block";
-    } 
-    const image = new Image();
-    const result = document.createElement("div");
-    result.classList.add("result-wrapper");
+//             const slides = document.createElement("div");
+//     slides.classList.add("slides-image-container");
+//     if(index == 0) {
+//       slides.style.display = "block";
+//     } 
+//     const image = new Image();
+//     const result = document.createElement("div");
+//     result.classList.add("result-wrapper");
 
-    image.classList.add("image");
-    image.src = path;
+//     image.classList.add("image");
+//     image.src = path;
 
-    slides.appendChild(image);
-    slides.appendChild(result);
-    slides.children[0].style.display = "block";
-    slideContainer.appendChild(slides);
-  }
-
+//     slides.appendChild(image);
+//     slides.appendChild(result);
+//     slides.children[0].style.display = "block";
+//     slideContainer.appendChild(slides);
+//   }
+}
 
 /*DROPZONE CUSTOMIZE CONFIGURATION
 Dropzone.options.myawesomedropzone = {
