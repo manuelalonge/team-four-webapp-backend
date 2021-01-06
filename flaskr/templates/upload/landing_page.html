@@ -14,7 +14,7 @@
     <div class="load-images-gallery">
         <!-- Dropzone square -->
         <div class="load-images-gallery__images-container">
-            <form action="" class="load-images-gallery__container">
+            <form action="{{ url_for('upload.upload_file') }}" method="POST" enctype="multipart/form-data" class="load-images-gallery__container">
                 <label for="images-upload" class="load-images-gallery__upload">
                             
                         </label>
