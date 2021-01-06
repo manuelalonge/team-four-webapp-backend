@@ -16,8 +16,8 @@
         <div class="load-images-gallery__images-container">
             <form action="{{ url_for('upload.upload_file') }}" method="POST" enctype="multipart/form-data" class="load-images-gallery__container">
                 <label for="images-upload" class="load-images-gallery__upload">
-                            
-                        </label>
+                    Select image:
+                </label>
                 <input type="file" name="files[]" multiple="true" accept="image/*" value={{key}} id="images-upload" capture/>
                 <input type="submit" class="load-images-gallery__submit" value="slideshow">
             </form>
