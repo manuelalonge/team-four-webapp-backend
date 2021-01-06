@@ -1,8 +1,5 @@
 import './styles.scss';
 
-window.Dropzone = require('./dropzone');
-
-
 const messageError = document.querySelector(".message");
 const messageText = document.querySelector(".message__text");
 const closeMessage = document.querySelector(".close");
@@ -12,19 +9,159 @@ const modalLoader = document.querySelector(".modal");
 const mainWrapper = document.querySelector(".main-wrapper");
 const slideContainer = document.querySelector(".slideshow-container");
 const exitBtn = document.querySelector(".remove-button");
-
+let newImageDrop;
 
 
 
 exitBtn.addEventListener("click", exitSlider);
-closeMessage.addEventListener("click", closeAlert);
+// closeMessage.addEventListener("click", closeAlert);
 
 // message error if the button ok is pressed the box disappear
-function closeAlert () {
-  messageError.style.display = "none";
+// function closeAlert () {
+//   messageError.style.display = "none";
+// }
+
+const inputImage = document.querySelector("#images-upload");
+const modalGallery = document.querySelector(".load-images-gallery__modal");
+const imageSelected = document.querySelector(".load-images-gallery__container");
+const loadImageSquare = document.querySelector(".load-images-gallery__upload");
+const submitResultsList = document.querySelector(".load-images-gallery__submit");
+
+let newImage;
+let errorFormat;
+
+submitResultsList.addEventListener("click", function(e){
+      // e.preventDefault();
+      fetch(window.location).then(function (response) {
+        return response.json();
+        console.log(response.json())
+      }).then(function (data) {
+        console.log(data);
+      })  
+});
+
+(function init() {
+    inputImage.addEventListener("change", selectImage);
+})();
+
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+  loadImageSquare.addEventListener(eventName, preventDefaults, false)
+})
+
+function preventDefaults (e) {
+  e.preventDefault()
+  e.stopPropagation()
 }
 
-/*DROPZONE CUSTOMIZE CONFIGURATION*/
+
+loadImageSquare.addEventListener('drop', handleDrop, false)
+
+function handleDrop(e) {
+let dt = e.dataTransfer
+let files = dt.files
+
+handleFiles(files)
+}
+
+function previewFile(file) {
+  let reader = new FileReader()
+  reader.readAsDataURL(file)
+  reader.onloadend = function() {
+   loadImage(this.result);
+  }
+}
+
+function handleFiles(files) {
+  files = [...files]
+  files.forEach(previewFile)
+}
+
+
+
+function selectImage() {
+    if(errorFormat !== undefined) {
+        errorFormat.innerText = "";
+    }
+    const image = this.files[0];
+    if(image.type == "image/jpeg" || image.type == "image/png") {
+        const reader = new FileReader();
+        reader.addEventListener("load", loadImage);
+        reader.readAsDataURL(image);
+    } else {
+        errorFormat = document.createElement("p");
+        errorFormat.innerText = "The format of the file is invalid";
+        loadImageSquare.appendChild(errorFormat);
+    }
+
+}
+        
+function loadImage(src) {
+    const imageBox = document.createElement("div");
+    const removeBtn = document.createElement("p");
+
+    imageBox.classList.add("imageSelected");
+    removeBtn.classList.add("removeImage");
+    removeBtn.innerHTML = "X"
+    newImage = new Image();
+    newImageDrop = new Image();
+    newImage.classList.add("readyImage");
+    newImageDrop.classList.add("readyImage");
+    newImage.style.maxWidth = "100%";
+    newImageDrop.style.maxWidth = "100%";
+    newImage.style.maxHeight = "400px";
+    newImageDrop.style.maxHeight = "400px";
+
+    if(this.result == undefined) {
+        newImageDrop.src = src;
+    } else {
+        newImage.src = this.result;
+    };
+    imageBox.appendChild(newImage);
+    imageBox.appendChild(newImageDrop);
+    imageBox.appendChild(removeBtn);
+    loadImageSquare.appendChild(imageBox);
+
+    Array.from(loadImageSquare.children).forEach(function(element) {
+        element.querySelector(".removeImage").addEventListener("click", function(e) {
+            e.preventDefault();
+            if(loadImageSquare.children.length >= 1 ) {
+                element.remove();
+            }
+            
+        });
+    });
+
+//     console.log(newImage);
+// let imagePath = newImage.src;
+
+        
+//         Array.from(loadImageSquare.children).forEach(function(element,i) {
+//             createSlide(imagePath,i );
+//         })
+//         upload.addEventListener("click", createSlide);
+        
+//         function createSlide(path, index){
+          
+//             const slides = document.createElement("div");
+//     slides.classList.add("slides-image-container");
+//     if(index == 0) {
+//       slides.style.display = "block";
+//     } 
+//     const image = new Image();
+//     const result = document.createElement("div");
+//     result.classList.add("result-wrapper");
+
+//     image.classList.add("image");
+//     image.src = path;
+
+//     slides.appendChild(image);
+//     slides.appendChild(result);
+//     slides.children[0].style.display = "block";
+//     slideContainer.appendChild(slides);
+//   }
+}
+
+/*DROPZONE CUSTOMIZE CONFIGURATION
 Dropzone.options.myawesomedropzone = {
   init: function() {
     
@@ -48,7 +185,7 @@ Dropzone.options.myawesomedropzone = {
        });
        /* "this" is a reference to myDropzone. I add to call it outside the button funtion below because otherwise
        it gives me a different value linked with the button
-       */
+       
        let myDropzone = this;
        document.querySelector("#button").addEventListener("click", function (e){
          //spinnerLoader.style.visibility = "visible";
@@ -58,13 +195,13 @@ Dropzone.options.myawesomedropzone = {
          e.preventDefault();
          myDropzone.processQueue(); 
          /* if there are more than 0 slides already in the slider (maybe because i uploaded images before)
-        it will remove them*/
+        it will remove them
          if(document.querySelectorAll(".slides-image-container").length > 0) {
             document.querySelectorAll(".slides-image-container").forEach(function(element) {
               element.parentNode.removeChild(element);
          })};
          /* here i take the files property of the object mydropzone and a pass the dataURL that is a reference to the image.
-          i need that because the tag img needed it in the src*/
+          i need that because the tag img needed it in the src
           myDropzone.files.forEach(function(element,i) {
             createSlide(element.dataURL, i)
           });
@@ -75,14 +212,15 @@ Dropzone.options.myawesomedropzone = {
          // document.querySelector(".slides-image-container").innerHTML = "";
          
         
-           
+         /* e.preventDefault();
+          myDropzone.processQueue();    
           
         });
       },
 }
-
+*/
 /* Here I create the slides that composed the slideshow, i assigned the dataURL to the src,
-based on the slider built by Manuel I give to the first slide the display block (index 0)*/
+based on the slider built by Manuel I give to the first slide the display block (index 0)
 function createSlide(imageSrc, index) {
     const slides = document.createElement("div");
     slides.classList.add("slides-image-container");
@@ -101,7 +239,7 @@ function createSlide(imageSrc, index) {
     slides.children[0].style.display = "block";
     slideContainer.appendChild(slides);
 }
-
+*/
 // button to exit from the slider when the modal appear
 function exitSlider () {
   mainWrapper.style.display = "none";
@@ -170,120 +308,9 @@ function showSlides(n) {
   
   }
 
+  
 
 
-/*Take a photo function */
-(function () {
-    if (
-      !"mediaDevices" in navigator ||
-      !"getUserMedia" in navigator.mediaDevices
-    ) {
-      alert("Camera API is not available in your browser");
-      return;
-    }
-  
-    // get page elements
-    const video = document.querySelector(".video__mobile");
-    const btnPlay = document.querySelector(".btn__Play");
-    const btnPause = document.querySelector(".btn__Pause");
-    const btnScreenshot = document.querySelector(".btn__Screenshot");
-    const btnChangeCamera = document.querySelector(".btn__ChangeCamera");
-    const screenshotsContainer = document.querySelector(".container__screenshots");
-    const canvas = document.querySelector(".container__canvas");
-    //const devicesSelect = document.querySelector(".devicesSelect");
-    var removeClass = document.querySelector(".btn__circle");
 
 
-    //btn visible 
-    
-    removeClass.addEventListener("click", function() {
-
-      var element = document.getElementByClassName("section");
-      element.classList.remove("section-visible");
-    } )         
- 
-
-
-    // video constraints
-    const constraints = {
-      video: {
-        width: {
-          min: 1280, 
-          ideal: 1920, 
-          max: 2560,
-        },
-        height: {
-          min: 720, 
-          ideal: 1080, 
-          max: 1440,
-        },
-      },
-    };
-  
-    // use front face camera
-    let useFrontCamera = true;
-  
-    // current video stream
-    let videoStream;
-  
-    // handle events
-    // play
-    btnPlay.addEventListener("click", function () {
-      video.play();
-      btnPlay.classList.add("is-hidden");
-      btnPause.classList.remove("is-hidden");
-    });
-  
-    // pause
-    btnPause.addEventListener("click", function () {
-      video.pause();
-      btnPause.classList.add("is-hidden");
-      btnPlay.classList.remove("is-hidden");
-    });
-  
-    // take screenshot
-    btnScreenshot.addEventListener("click", function () {
-      const img = document.createElement("img");
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      canvas.getContext("2d").drawImage(video, 0, 0);
-      img.src = canvas.toDataURL("image/png");
-      screenshotsContainer.prepend(img);
-    });
-  
-    // switch camera
-    btnChangeCamera.addEventListener("click", function () {
-      useFrontCamera = !useFrontCamera;
-  
-      initializeCamera();
-    });
-  
-    // stop video stream
-    function stopVideoStream() {
-      if (videoStream) {
-        videoStream.getTracks().forEach((track) => {
-          track.stop();
-        });
-      }
-    }
-  
-    // initialize
-    async function initializeCamera() {
-      stopVideoStream();
-      constraints.video.facingMode = useFrontCamera ? "user" : "environment";
-  
-      try {
-        videoStream = await navigator.mediaDevices.getUserMedia(constraints);
-        video.srcObject = videoStream;
-      } catch (err) {
-        alert("Could not access the camera");
-      }
-    }
-  
-    initializeCamera();
-  })();
-
-
-/* Images Upload Functions (From Desktop) 
-*/
 
