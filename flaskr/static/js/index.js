@@ -24,7 +24,65 @@ function closeAlert () {
   messageError.style.display = "none";
 }
 
-/*DROPZONE CUSTOMIZE CONFIGURATION*/
+const inputImage = document.querySelector("#images-upload");
+const modalGallery = document.querySelector(".load-images-gallery__modal");
+const imageSelected = document.querySelector(".load-images-gallery__container");
+const loadImageSquare = document.querySelector(".load-images-gallery__upload");
+
+let newImage;
+let errorFormat;
+
+(function init() {
+    inputImage.addEventListener("change", selectImage);
+})();
+
+
+function selectImage() {
+    if(errorFormat !== undefined) {
+        errorFormat.innerText = "";
+    }
+    const image = this.files[0];
+    if(image.type == "image/jpeg" || image.type == "image/png") {
+        const reader = new FileReader();
+        reader.addEventListener("load", loadImage);
+        reader.readAsDataURL(image);
+    } else {
+        errorFormat = document.createElement("p");
+        errorFormat.innerText = "The format of the file is invalid";
+        loadImageSquare.appendChild(errorFormat);
+    }
+
+}
+        
+function loadImage() {
+        const imageBox = document.createElement("div");
+        const removeBtn = document.createElement("p");
+
+        imageBox.classList.add("imageSelected");
+        removeBtn.classList.add("removeImage");
+        removeBtn.innerHTML = "X"
+        newImage = new Image();
+        newImage.classList.add("readyImage");
+        newImage.style.maxWidth = "100%";
+        newImage.style.maxHeight = "400px";
+        newImage.src = this.result;
+        imageBox.appendChild(newImage);
+        imageBox.appendChild(removeBtn);
+        loadImageSquare.appendChild(imageBox);
+        Array.from(loadImageSquare.children).forEach(function(element) {
+          element.querySelector(".removeImage").addEventListener("click", function(e) {
+              e.preventDefault();
+              if(loadImageSquare.children.length >= 1 ) {
+                  element.remove();
+              }
+              
+          });
+      })
+}
+
+
+
+/*DROPZONE CUSTOMIZE CONFIGURATION
 Dropzone.options.myawesomedropzone = {
   init: function() {
     
@@ -48,7 +106,7 @@ Dropzone.options.myawesomedropzone = {
        });
        /* "this" is a reference to myDropzone. I add to call it outside the button funtion below because otherwise
        it gives me a different value linked with the button
-       */
+       
        let myDropzone = this;
        document.querySelector("#button").addEventListener("click", function (e){
          //spinnerLoader.style.visibility = "visible";  
@@ -56,13 +114,13 @@ Dropzone.options.myawesomedropzone = {
          e.preventDefault();
          myDropzone.processQueue(); 
          /* if there are more than 0 slides already in the slider (maybe because i uploaded images before)
-        it will remove them*/
+        it will remove them
          if(document.querySelectorAll(".slides-image-container").length > 0) {
             document.querySelectorAll(".slides-image-container").forEach(function(element) {
               element.parentNode.removeChild(element);
          })};
          /* here i take the files property of the object mydropzone and a pass the dataURL that is a reference to the image.
-          i need that because the tag img needed it in the src*/
+          i need that because the tag img needed it in the src
           myDropzone.files.forEach(function(element,i) {
             createSlide(element.dataURL, i)
           });
@@ -75,13 +133,13 @@ Dropzone.options.myawesomedropzone = {
         
          /* e.preventDefault();
           myDropzone.processQueue();    
-          */
+          
         });
       },
 }
-
+*/
 /* Here I create the slides that composed the slideshow, i assigned the dataURL to the src,
-based on the slider built by Manuel I give to the first slide the display block (index 0)*/
+based on the slider built by Manuel I give to the first slide the display block (index 0)
 function createSlide(imageSrc, index) {
     const slides = document.createElement("div");
     slides.classList.add("slides-image-container");
@@ -100,7 +158,7 @@ function createSlide(imageSrc, index) {
     slides.children[0].style.display = "block";
     slideContainer.appendChild(slides);
 }
-
+*/
 // button to exit from the slider when the modal appear
 function exitSlider () {
   mainWrapper.style.display = "none";

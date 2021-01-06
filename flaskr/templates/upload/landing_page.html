@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <<<<<<< HEAD <div id="myModal" class="modal">
+        <div id="myModal" class="modal">
         <div id="spinner"></div>
         </div>
 
@@ -34,17 +34,14 @@
         <div class="load-images-gallery">
             <!-- Dropzone square -->
             <div class="load-images-gallery__images-container">
-                <div class="container__DropZone">
-                    <form action="{{url_for('upload.upload_file')}}" enctype="multipart/form-data" method="POST" class="dropzone" id="myawesomedropzone">
-                        <! -- url_for('nome_funzione') è il modo in cui flask chiama le funzioni dal backend, POST è il metodo utilizzato, enctype è necessario-->
-
+                    <form action="" class="load-images-gallery__container">
+                        <label for="images-upload" class="load-images-gallery__upload">
+                            
+                        </label>
+                        <input id="images-upload" type="file" accept="image/*" capture/>
+                        <input type="submit" class="load-images-gallery__submit" value="slideshow">
                     </form>
 
-                </div>
-                <button type="submit" id="button" class="dropzone__btn">Slideshow</button>
-                <div class="message">
-                    <span class="message__text">No more than 10 images allowed</span>
-                    <span class="close">OK</span>
                 </div>
             </div>
         </div>
