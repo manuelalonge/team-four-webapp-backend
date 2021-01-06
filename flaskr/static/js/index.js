@@ -180,7 +180,9 @@ Dropzone.options.myawesomedropzone = {
        
        let myDropzone = this;
        document.querySelector("#button").addEventListener("click", function (e){
-         //spinnerLoader.style.visibility = "visible";  
+         //spinnerLoader.style.visibility = "visible";
+         e.preventDefault();
+         myDropzone.processQueue();    
          //modalLoader.style.display ="block";
          e.preventDefault();
          myDropzone.processQueue(); 
