@@ -8,6 +8,7 @@ from flaskr.auth import login_required
 from flaskr.db import get_db
 from flaskr.__init__ import create_app
 #from flask import current_app
+from flask import jsonify
 import os
 
 
@@ -26,25 +27,41 @@ def allowed_file(filename):
 @login_required
 def upload_file():
     if request.method == 'POST':
+        print(1)
         if 'files[]' not in request.files:
             return flash('No file part')
+        print(2)
         files = request.files.getlist('files[]')
+        print(3)
         photo_id = 0
         results = {}
-        try:
-            for file in files:
-                if file and allowed_file(file.filename):
-                    filename = secure_filename(file.filename)
-                    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                    photo = app.config['UPLOAD_FOLDER'] + "/" + filename
-                    photo_res = ImageRecognized.image_recognized(photo)
-                    os.remove(app.config['UPLOAD_FOLDER'] + "/" + filename)
-                    photo_id = photo_id +1
-                    photo_id_st = str(photo_id)
-                    results["Photo" + photo_id_st] = photo_res
-            return flash(results)
-        except:
-            return flash("errore")
+
+        for file in files:
+            if file and allowed_file(file.filename):
+                print(4)
+                filename = secure_filename(file.filename)
+                print(5)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                print(6)
+                photo = app.config['UPLOAD_FOLDER'] + "/" + filename
+                print(7)
+                photo_res = ImageRecognized.image_recognized(photo)
+                print(8)
+                os.remove(app.config['UPLOAD_FOLDER'] + "/" + filename)
+                print(9)
+                photo_id = photo_id +1
+                print(10)
+                photo_id_st = str(photo_id)
+                print(11)
+                results["Photo" + photo_id_st] = photo_res
+                print(12)
+            else:
+                flash("Error")
+        pippo = jsonify(results)   
+        print(pippo)
+        return pippo
+
     return render_template('upload/landing_page.html')
     
+
     
